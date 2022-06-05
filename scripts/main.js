@@ -3,7 +3,7 @@ function start() {
     //     selector: 'section',
     //     enter: (element) => element.classList.add('enter')
     // })
-    let frameNumber = 0, // start video at frame 0
+    // let frameNumber = 0, // start video at frame 0
     // lower numbers = faster playback
     playbackConst = 500, 
     // get page height from video duration
@@ -20,12 +20,14 @@ vid.addEventListener('loadedmetadata', function() {
 
 // Use requestAnimationFrame for smooth playback
 function scrollPlay(){  
-  var frameNumber  = window.pageYOffset/playbackConst;
+  let frameNumber  = window.pageYOffset/playbackConst;
   vid.currentTime  = frameNumber;
-  window.requestAnimationFrame(scrollPlay);
 }
 
-window.requestAnimationFrame(scrollPlay);
+window.addEventListener('scroll', function() {
+  window.requestAnimationFrame(scrollPlay);
+})
+
 }
 
 window.addEventListener('DOMContentLoaded',start)
